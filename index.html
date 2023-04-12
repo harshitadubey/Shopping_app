@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aura Shopping</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="images/hdIcon.jpg" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <main class="main">
+        <!-- nav -->
+        <section class="navTwo" id="mySidenav">
+            <nav class="navbar medinav navbar-expand-lg navbar-light bg-light">
+                <div class="container d-md-flex">
+                    <h4>Aurasoft Shopping Mall</h4>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item appoinment">
+                                <a class="nav-link" aria-current="page" href="">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick=" " href="">Products</a>
+                            </li>
+                            <button class="btn btn-outline-dark cartBtn" type="submit">
+
+                                <a href="cart.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2s-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2zm-9.83-3.25l.03-.12l.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2l-2.76 5H8.53l-.13-.27L6.16 6l-.95-2l-.94-2H1v2h2l3.6 7.59l-1.35 2.45c-.16.28-.25.61-.25.96c0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                    </svg>Go to Cart</a>
+                                <span class="badge bg-dark text-white ms-1 rounded-pill" id="cartCountArea">0</span>
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+        <!-- section card with numbers -->
+        <section class="container mt-5 aos-init" data-aos="fade-up">
+            <div class="row cardTemplate" id="cartNo">
+
+            </div>
+        </section>
+        <!-- Footer-->
+        <section class="footer">
+            <footer class="mt-5  bg-dark ">
+                <div class="container">
+                    <p style="color: #fff; text-align: center; ">Copyright &copy; Harshuj 2023</p>
+                </div>
+            </footer>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+        <script src="js/utils.js"></script>
+        <script>
+            let productList = [
+                {
+                    id: 1,
+                    name: 'Ubtan Face Wash with Turmeric & Saffron for Tan Removal – 150 ml',
+                    img: 'images/ubtan-face-wash.jpg',
+                    details: 'Removes Tan | Brightens Skin',
+                    price: 375
+                },
+                {
+                    id: 2,
+                    name: 'Honey Malai Body Lotion with Honey & Malai for Nourishing Glow - 400 ml',
+                    img: 'images/honey-malai-body-lotion.jpg',
+                    details: 'Deeply Moisturizes | Adds Glow',
+                    price: 449
+                },
+                {
+                    id: 3,
+                    name: 'Milky Soft Body Lotion for Babies- 400ml',
+                    img: 'images/milky-soft-body-lotion.jpg',
+                    details: 'Deeply Nourishes Skin | 24-Hour Moisturization',
+                    price: 449
+                },
+                {
+                    id: 4,
+                    name: 'Aqua Glow Gel Face Moisturizer- 100ml',
+                    img: 'images/aqua-glow-gel-face-moisturizer.jpg',
+                    details: 'Gives 72-Hour Hydration | Lightweight Gel Formula',
+                    price: 699
+                },
+                {
+                    id: 5,
+                    name: 'Essential Anti-Hair Fall Kit Combo Pack',
+                    img: 'images/anti-fall_regimen_kit.jpg',
+                    details: 'Reduces Hair Fall | Boosts Growth | Smoothens Hair',
+                    price: 1201
+                },
+                {
+                    id: 6,
+                    name: 'Long Stay Colored Kajal for 11-Hour Long Stay - Deep Ocean Blue',
+                    img: 'images/deep-ocean-blue.jpg',
+                    details: ' Waterproof | Smudge-Free',
+                    price: 349
+                },
+
+            ]
+            let html = ``;
+            productList.map((item) => {
+                html += `<div class="card my-2 m-auto p-0 D_Pro_card" style="width: 20rem;">
+                        <img src="${item.img}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.details}</h5>
+                            <p class="card-text">${item.details} </p>
+                            <div class="card-body2 ">
+                            <b>Price</b>  ${item.price}
+                            <button class="btn btn-outline-dark  D_button" >Add to cart</button>
+                            </div>
+                        </div>
+                        </div>
+                        `;
+
+            });
+            const cartSection = document.getElementById("cartNo");
+            cartSection.innerHTML = html;
+            getCartCount();
+            function getCartCount() {
+                let cartData = getDataFromLocalStorageByName('cart');
+                if (cartData) document.getElementById("cartCountArea").textContent = cartData.length;
+                else document.getElementById("cartCountArea")[0].textContent = 0;
+            }
+            function addIntoCartHandler(id) {
+                let result = productList.find(item => item.id === id);
+                console.log('---result : ', result);
+                let cartData = getDataFromLocalStorageByName('cart');
+                if (cartData) {
+                    let isAvailable = cartData.find(item => item.id === result.id);
+                    if (!isAvailable) {
+                        result.quantity = 1;
+                        cartData.push(result);
+                        setDataFromLocalStorageByName('cart', cartData);
+                        alert("Item added to cart");
+                    } else {
+                        alert("Item already added in the cart");
+                    }
+                } else {
+                    result.quantity = 1;
+                    setDataFromLocalStorageByName('cart', [result])
+                }
+                getCartCount();
+            }
+            
+        </script>
+       
+</body>
+
+</html>

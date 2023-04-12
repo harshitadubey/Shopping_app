@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Shopping</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link href="css/cart.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="images/hdIcon.jpg" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <section style="background-color: #eee; " class="cart_page"> 
+    <h6 class=" text-center back_button"><a href="index.html" class="text-body">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 512 512">
+          <path fill="currentColor"
+            d="M8 256c0 137 111 248 248 248s248-111 248-248S393 8 256 8S8 119 8 256zm448 0c0 110.5-89.5 200-200 200S56 366.5 56 256S145.5 56 256 56s200 89.5 200 200zm-72-20v40c0 6.6-5.4 12-12 12H256v67c0 10.7-12.9 16-20.5 8.5l-99-99c-4.7-4.7-4.7-12.3 0-17l99-99c7.6-7.6 20.5-2.2 20.5 8.5v67h116c6.6 0 12 5.4 12 12z" />
+        </svg> Back to home</a></h6>
+    <div class="container h-100 py-5">
+      <div class="row  justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card shopping-cart" style="border-radius: 15px;">
+            <div class="card-body text-black">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row flex justify-content-between" style="background-color: #fafafa;">
+                    <div class="col-4">
+                      <h3 class="fw-bold text-uppercase">Your products</h3>
+                    </div>
+                    <div class="col-md-2 col-6">
+                      Grand Total:
+                      <span class="fw-bold mb-0   totalCartAmount">₹</span>
+                    </div>
+                  </div>
+
+                  <!-- <h5 class="fw-bold mb-0  total"></h5> -->
+
+                  <div id="cartNo" class="row "></div>
+                </div>
+                <div class="col-12 D_total_pay">
+
+                  <h3 class=" text-center fw-bold text-uppercase ">Payment</h3>
+                  <div class="row flex" >
+                    <div class="col-md-4 col-6">
+                      Grand Total:
+                      <span class="fw-bold mb-0 mt-1 totalCartAmount">₹</span>
+                      <!-- <h5 class="fw-bold mb-0"></h5> -->
+                    </div>
+                    <div class="col-md-2 col-6">
+                      <a href="cart.html"><button class="btn btn-outline-dark btnBuy">Buy Now</button></a>
+                    </div>
+
+                  </div>
+
+                </div>
+                <h6 class="mb-0 text-center"><a href="index.html" class="text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                      viewBox="0 0 512 512">
+                      <path fill="currentColor"
+                        d="M8 256c0 137 111 248 248 248s248-111 248-248S393 8 256 8S8 119 8 256zm448 0c0 110.5-89.5 200-200 200S56 366.5 56 256S145.5 56 256 56s200 89.5 200 200zm-72-20v40c0 6.6-5.4 12-12 12H256v67c0 10.7-12.9 16-20.5 8.5l-99-99c-4.7-4.7-4.7-12.3 0-17l99-99c7.6-7.6 20.5-2.2 20.5 8.5v67h116c6.6 0 12 5.4 12 12z" />
+                    </svg>Continue Shopping</a></h6>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer-->
+  <section>
+    <footer class="footer ">
+      <div class="container p-1">
+        <p style="color: #fff; text-align: center; ">Copyright &copy; Harshuj 2023</p>
+      </div>
+    </footer>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="js/utils.js"></script>
+  <script>
+    function updateCartContainer() {
+      const cartItems = getDataFromLocalStorageByName('cart')
+      console.log('cartItems', cartItems);
+      let html = ``;
+      cartItems.map((item) => {
+        html += `<div class=" align-items-center my-4 mx-auto col-md-6 ">
+                  <div class="D_cart">
+                    <div class="flex-shrink-0 row flex">
+                    <div class="col-md-4">
+                      <img class="col-3" src="${item.img}"
+                        class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                    </div>
+                    <div class="col-md-8 ">
+                      <h5 class="text-primary">${item.name}</h5>
+                      <h6 style="color: #9e9e9e;">${item.details}</h6>
+                    </div>
+                  </div>
+                  <div class="row cartCount flex">
+                    <div class="col-3 text-center ">
+                      <p class="fw-bold ">₹${item.price}</p>
+                      <div class="def-number-input number-input safari_only">
+                        <button onclick=x x class="minus"></button>
+                        <input class="quantity fw-bold text-black" min="0" name="quantity" value="${item.quantity}" type="number">
+                          <button onclick='cartQuantity(${item.id},"a")' class="plus"></button>
+                      </div>
+                    </div>
+                    <div class="col-3 ">
+                      <p class="fw-bold ">Total</p>
+                      <p class="lead fw-normal mb-0">${+item.price * (+item.quantity)}</p>
+                    </div>
+                    <div class="col-1 ">
+                      <button class="btn delete" onclick='deleteItemHandler(${item.id})' >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="0.93em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1216 1312"><path fill="red" d="M1202 1066q0 40-28 68l-136 136q-28 28-68 28t-68-28L608 976l-294 294q-28 28-68 28t-68-28L42 1134q-28-28-28-68t28-68l294-294L42 410q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294l294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68L880 704l294 294q28 28 28 68z" /></svg>
+                      </button> 
+                    </div>
+                  </div>
+                    </div>
+                </div>`;
+      });
+      const cartSection = document.getElementById("cartNo");
+      cartSection.innerHTML = html;
+      updateTotalCart();
+    }
+    function cartQuantity(id, type) {
+      console.log('id ', id);
+      console.log('type', type);
+      const cartItems = getDataFromLocalStorageByName('cart');
+      let quantityItemIndex = cartItems.findIndex(item => item.id === id);
+      console.log("quantityItemIndex : ", quantityItemIndex);
+      if (type === 'a') {
+        cartItems[quantityItemIndex].quantity = cartItems[quantityItemIndex].quantity + 1;
+        setDataFromLocalStorageByName('cart', cartItems);
+        alert("Item quantity increased ");
+      } else if (type === 's') {
+        if (cartItems[quantityItemIndex].quantity > 1) {
+          cartItems[quantityItemIndex].quantity = cartItems[quantityItemIndex].quantity - 1;
+          setDataFromLocalStorageByName('cart', cartItems);
+          alert("Item quantity decreased ");
+        }
+      }
+      updateCartContainer();
+    }
+
+    function updateTotalCart() {
+      const cartItems = getDataFromLocalStorageByName('cart');
+      let total = 0;
+      for (var i = 0; i < cartItems.length; i++) {
+        total += (cartItems[i].quantity * cartItems[i].price);
+      }
+      var [p0, p1] = document.getElementsByClassName("totalCartAmount");
+      p0.innerText = total;
+      p1.innerText = total;
+    }
+    function deleteItemHandler(id) {
+      console.log('id ', id);
+      const cartItems = getDataFromLocalStorageByName('cart');
+      let remainingItems = cartItems.filter(item => item.id != id);
+      console.log('remainingItems :', remainingItems);
+      setDataFromLocalStorageByName('cart', remainingItems);
+      updateCartContainer();
+    }
+
+    updateCartContainer();
+  </script>
+
+</body>
+
+</html>
